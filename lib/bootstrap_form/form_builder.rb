@@ -34,7 +34,7 @@ module BootstrapForm
         content_tag(:div, class: 'controls') do
           args << options.except(:label, :help)
           html = super(name, *args) + ' ' + options[:label]
-          label(name, html, class: 'checkbox')
+          label(name, html + object.class.human_attribute_name(name), class: 'checkbox')
         end
       end
     end
