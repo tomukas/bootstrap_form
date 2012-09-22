@@ -33,8 +33,9 @@ module BootstrapForm
       content_tag :div, class: "control-group#{(' error' if object.errors[name].any?)}"  do
         content_tag(:div, class: 'controls') do
           args << options.except(:label, :help)
-          html = super(name, *args) + ' ' + options[:label]
-          label(name, html + object.class.human_attribute_name(name), class: 'checkbox')
+          
+          html = super(name, *args) + ' ' + (options[:label].present? ? object.class.human_attribute_name(name) : options[:label])
+          label(name, html, class: 'checkbox')
         end
       end
     end
