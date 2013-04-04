@@ -22,7 +22,11 @@ module BootstrapForm
             help = object.errors[name].any? ? object.errors[name].join(', ') : options[:help]
             help = content_tag(@help_tag, class: @help_css) { help } if help
             args << options.except(:label, :help)
-            super(name, *args) + help
+            if method_name == 'email_field'
+              content_tag(:div, content_tag(:span, content_tag(:i, nil, class:'icon-envelope'), class:'add-on') + super(name, *args), class: 'input-prepend') + help
+            else
+             super(name, *args) + help
+            end
           end
         end
       end
