@@ -26,9 +26,9 @@ module BootstrapForm
             
               content_tag(:div, content_tag(:span, content_tag(:i, nil, class:'icon-envelope'), class:'add-on') + super(name, *args), class: 'input-prepend') + help
             
-            elsif method_name == 'search_text_field'
+            elsif method_name == 'search_field'
             
-              content_tag(:div, super(name, *args) + content_tag(:button, content_tag(:i, nil, class:'icon-search icon-white', id:'search_append_button'), class: 'btn btn-warning'), class: 'input-append') + help
+              content_tag(:div, super(name, *args) + content_tag(:button, content_tag(:i, nil, class:'icon-inverse icon-white', id:'search_append_button'), class: 'btn btn-warning'), class: 'input-append') + help
            
             else
              super(name, *args) + help
