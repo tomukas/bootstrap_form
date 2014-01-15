@@ -23,7 +23,13 @@ module BootstrapForm
             help = content_tag(@help_tag, class: @help_css) { help } if help
             args << options.except(:label, :help)
             if method_name == 'email_field'
+            
               content_tag(:div, content_tag(:span, content_tag(:i, nil, class:'icon-envelope'), class:'add-on') + super(name, *args), class: 'input-prepend') + help
+            
+            elsif method_name == 'search_text_field'
+            
+              content_tag(:div, super(name, *args) + content_tag(:button, content_tag(:i, nil, class:'icon-search', id:'search_append_button'), class: 'input-append') + help
+           
             else
              super(name, *args) + help
             end
