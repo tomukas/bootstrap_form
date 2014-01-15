@@ -28,7 +28,7 @@ module BootstrapForm
             
             elsif method_name == 'search_text_field'
             
-              content_tag(:div, super(name, *args) + content_tag(:button, content_tag(:i, nil, class:'icon-search', id:'search_append_button'), class: 'btn btn-warning'), class: 'input-append') + help
+              content_tag(:div, super(name, *args) + content_tag(:button, content_tag(:i, nil, class:'icon-search icon-white', id:'search_append_button'), class: 'btn btn-warning'), class: 'input-append') + help
            
             else
              super(name, *args) + help
