@@ -12,13 +12,19 @@ module BootstrapForm
         @help_css = 'help-inline'
       end
     end
+    
+    def check_required(obj, attr)
+      
+      'required' if obj.class.validators_on(attr).map(&:class).include?(ActiveRecord::Validations::PresenceValidator) 
+
+    end  
 
     %w{email_field search_field text_field text_area password_field collection_select file_field date_select select}.each do |method_name|
       define_method(method_name) do |name, *args|
         options = args.extract_options!.symbolize_keys!
         content_tag :div, class: "control-group#{(' error' if object.errors[name].any?)}"  do
           
-          label("#{name} #{object.class.validators_on(name).map(&:class).include?(ActiveRecord::Validations::PresenceValidator)}", options[:label], class: 'control-label') +
+          label(name, options[:label], class: "control-label #{check_required(object, name)}") +
           content_tag(:div, class: 'controls') do
             help = object.errors[name].any? ? object.errors[name].join(', ') : options[:help]
             help = content_tag(@help_tag, class: @help_css) { help } if help
