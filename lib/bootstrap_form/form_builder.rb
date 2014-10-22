@@ -18,7 +18,7 @@ module BootstrapForm
         options = args.extract_options!.symbolize_keys!
         content_tag :div, class: "control-group#{(' error' if object.errors[name].any?)}"  do
           
-          label("#{name} #{object.class.validators_on(attr).map(&:class).include?(ActiveRecord::Validations::PresenceValidator)}", options[:label], class: 'control-label') +
+          label("#{name} #{object.class.validators_on(name).map(&:class).include?(ActiveRecord::Validations::PresenceValidator)}", options[:label], class: 'control-label') +
           content_tag(:div, class: 'controls') do
             help = object.errors[name].any? ? object.errors[name].join(', ') : options[:help]
             help = content_tag(@help_tag, class: @help_css) { help } if help
