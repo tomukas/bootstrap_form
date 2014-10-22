@@ -52,7 +52,7 @@ module BootstrapForm
           args << options.except(:label, :help)
           
           html = super(name, *args) + ' ' + (options[:label].blank? ? object.class.human_attribute_name(name) : options[:label])
-          label(name, html, class: "checkbox #{check_required(object, name)}")
+          label(name, html, class: 'checkbox')
         end
       end
     end
