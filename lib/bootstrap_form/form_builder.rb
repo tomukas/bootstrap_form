@@ -2,7 +2,7 @@ module BootstrapForm
   class FormBuilder < ActionView::Helpers::FormBuilder
     delegate :content_tag, to: :@template
 
-    def initialize(object_name, object, template, options, proc=nil)
+    def initialize(object_name, object, template, options)
       super
       if options.fetch(:help, '').to_sym == :block
         @help_tag = :p
