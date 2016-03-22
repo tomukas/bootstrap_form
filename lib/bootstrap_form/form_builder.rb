@@ -27,7 +27,8 @@ module BootstrapForm
         
         content_tag :div, class: "control-group#{(' error' if object.errors[name].any?)}"  do
           
-          label(name + options[:label_btn], options[:label], class: "control-label #{check_required(object, name)}") +
+          label(name, options[:label], class: "control-label #{check_required(object, name)}") +
+          options[:label_btn] + 
           content_tag(:div, class: 'controls') do
             help = object.errors[name].any? ? object.errors[name].join(', ') : options[:help]
             help = content_tag(@help_tag, class: @help_css) { help } if help
