@@ -22,17 +22,14 @@ module BootstrapForm
     %w{number_field email_field search_field text_field text_area password_field collection_select file_field date_select select}.each do |method_name|
       define_method(method_name) do |name, *args|
         options = args.extract_options!.symbolize_keys!
-        
-        options[:label_btn] ||= ''
-        
+
         content_tag :div, class: "control-group#{(' error' if object.errors[name].any?)}"  do
           
           label(name, options[:label], class: "control-label #{check_required(object, name)}") +
-          options[:label_btn] + 
           content_tag(:div, class: 'controls') do
             help = object.errors[name].any? ? object.errors[name].join(', ') : options[:help]
             help = content_tag(@help_tag, class: @help_css) { help } if help
-            args << options.except(:label, :help, :label_btn)
+            args << options.except(:label, :help)
             if method_name == 'email_field'
             
               content_tag(:div, content_tag(:span, content_tag(:i, nil, class:'icon-envelope'), class:'add-on') + super(name, *args), class: 'input-prepend') + help
