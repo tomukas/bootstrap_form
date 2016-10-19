@@ -15,7 +15,7 @@ module BootstrapForm
     
     def check_required(obj, attr)
       
-      'required' if obj.class.validators_on(:number).map{ |i| i.class if i.options == {} }.compact.include?(ActiveRecord::Validations::PresenceValidator) 
+      'required' if obj.class.validators_on(attr).map{ |i| i.class if i.options == {} }.compact.include?(ActiveRecord::Validations::PresenceValidator) 
 
     end  
 
