@@ -9,7 +9,7 @@ module BootstrapForm
         @help_css = 'help-block'
       else
         @help_tag = :span
-        @help_css = 'help-inline'
+        @help_css = 'help-inline small_font'
       end
     end
     
