@@ -19,7 +19,7 @@ module BootstrapForm
 
     end  
 
-    %w{number_field email_field search_field text_field text_area password_field collection_select select_month select_year file_field date_select select}.each do |method_name|
+    %w{number_field email_field search_field text_field text_area password_field collection_select file_field date_select select}.each do |method_name|
       define_method(method_name) do |name, *args|
         options = args.extract_options!.symbolize_keys!
 
